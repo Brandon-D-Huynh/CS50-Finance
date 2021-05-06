@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <h1>Index</h1>
+    <p>You currently have ${{ cash }} available to purchase with.</p>
+    <p>Your total holdings are worth ${{ allStocksTotal }}</p>
+    <p>Your account has a total worth of ${{ totalValue }}</p>
+    <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for row in currentStocks %}
+                <tr>
+                    <td>{{ row["stockName"] }}</td>
+                    <td>{{ row["quantity"] }}</td>
+                    <td>${{ stockPrices[row["stockName"]] }}</td>
+                    <td>${{ stockTotal[row["stockName"]] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+{% endblock %}
